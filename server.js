@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // GET
 app.get('/get_dates', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
+    console.log("Getting dates available");
     try {
         const result = await db.pool.query("SELECT DISTINCT date FROM ping_results order by date desc;");
         res.send(result);
@@ -19,6 +20,7 @@ app.get('/get_dates', async (req, res) => {
 });
 app.get('/get_pings', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
+    console.log("Getting todays data");
     try {
         const result = await db.pool.query("SELECT * FROM ping_results ORDER BY date desc, time asc;");
         res.send(result);
@@ -49,6 +51,7 @@ app.get('/get_today_pings', async (req, res) => {
 app.post('/get_pings', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     let ping_query = req.body;
+    console.log("Getting all pings with a post request of date = " + ping_query.date);
     try {
         const sql = "SELECT * FROM ping_results WHERE date = '" + ping_query.date +"' ORDER BY date desc, time asc;";
         const result = await db.pool.query(sql);
