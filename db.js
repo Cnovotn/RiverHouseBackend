@@ -1,7 +1,7 @@
 // Use the MariaDB Node.js Connector
 var mariadb = require('mariadb');
 const config = {
-    HOST: "10.0.0.150",
+    HOST: "192.168.254.49",
     USER: "user",
     PORT: 8457,
     PASSWORD: "raspberry",
